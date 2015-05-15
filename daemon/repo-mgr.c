@@ -2577,8 +2577,12 @@ process_active_folder (SeafRepo *repo, const char *dir,
     GList *p;
     char *path;
 
+    /* Delete event will be triggered on the deleted dir too. */
+    if (!g_file_test (dir, G_FILE_TEST_IS_DIR))
+        return;
+
     if (get_changed_paths_in_folder (repo, istate, dir, &add, &mod, &del) < 0) {
-        seaf_warning ("Failed to get changed paths under %s.\n", path);
+        seaf_warning ("Failed to get changed paths under %s.\n", dir);
         return;
     }
 
