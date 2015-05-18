@@ -17,7 +17,7 @@
 #include <windows.h>
 #include <winsock2.h>
 #include <ws2tcpip.h>
-#include <Rpc.h>
+#include <rpc.h>
 #include <shlobj.h>
 #include <psapi.h>
 
@@ -771,7 +771,7 @@ writen(int fd, const void *vptr, size_t n)
 
 
 ssize_t						/* Read "n" bytes from a descriptor. */
-recvn(int fd, void *vptr, size_t n)
+recvn(evutil_socket_t fd, void *vptr, size_t n)
 {
 	size_t	nleft;
 	ssize_t	nread;
@@ -800,7 +800,7 @@ recvn(int fd, void *vptr, size_t n)
 }
 
 ssize_t						/* Write "n" bytes to a descriptor. */
-sendn(int fd, const void *vptr, size_t n)
+sendn(evutil_socket_t fd, const void *vptr, size_t n)
 {
 	size_t		nleft;
 	ssize_t		nwritten;
